@@ -2841,7 +2841,7 @@ ArrayBlockingQueue 的 LinkedBlockingQueue 区别
   jps 进程状态信息
   jstack 查看java进程内线程的堆栈信息
 
-  jmap 查看堆转信息
+  jmap 查看堆的信息
 
   jhat 堆转储快照分析工具 
 
