@@ -1279,7 +1279,7 @@ Feign是一个声明式的http客户端，官方地址：https://github.com/Open
 
 Fegin的使用步骤如下：
 
-### 1）引入依赖
+### 1）调用方引入依赖
 
 我们在order-service服务的pom文件中引入feign的依赖：
 
@@ -1292,7 +1292,7 @@ Fegin的使用步骤如下：
 
 
 
-### 2）添加注解
+### 2）调用方添加注解
 
 在order-service的启动类添加注解开启Feign的功能：
 
@@ -1326,7 +1326,7 @@ public class OrderApplication {
 
 
 
-### 3）编写 Feign 的客户端
+### 3）调用方编写 Feign 的客户端
 
 在order-service中新建一个接口，内容如下：
 
@@ -1359,13 +1359,13 @@ public interface UserClient {
 
 
 
-
-
-### 4）测试
+### 4）调用方测试
 
 修改 `order-service` 中的 `OrderService` 类中的 `queryOrderById` 方法，使用 `Feign` 客户端代替 `RestTemplate`：
 
 ```java
+@Autowired
+private UserClient userClent;
 public Order searchById(Long orderId) {
     // 1.查询订单
     Order order = orderMapper.findById(orderId);
@@ -1379,7 +1379,13 @@ public Order searchById(Long orderId) {
 
 
 
-### 5）总结
+### 5) 提供方编写对应服务接口
+
+`userController` 应该有 `findById` 方法, 这样调用方才可以调用
+
+
+
+### 6）总结
 
 使用Feign的步骤：
 
